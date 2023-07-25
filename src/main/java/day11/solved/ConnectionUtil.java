@@ -1,27 +1,49 @@
 package day11.solved;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-public class ConnectionUtil {
-	public static void main(String[] args) throws Exception {       
-        
-        // Step 01: Get connection
-        Connection connection = ConnectionUtil.getConnection();
-        System.out.println(connection);
 
-        // Step 02: Create a Statement
-        Statement stmt = connection.createStatement();
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class ConnectionUtil {
+	 
+    public static Connection getConnection()  {
+ 
+        Connection con = null;
+        String url = "jdbc:mysql://localhost/project";
+        String userName = "root";
+        String passWord = "root";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, userName, passWord);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to connect to the database");
+        }
+        return con;
+    }
+     
+    public static void close(Connection conn , Statement stmt, ResultSet rs){
          
-        // Step 03: Execute Insert Query
-        String query ="INSERT INTO user (username, email, password) VALUES (\"vinit_gore\",\"vinit.gore@ctr.freshworks.com\", \"password007\")";
-        int rows = stmt.executeUpdate(query);
-        System.out.println("No of rows inserted :" + rows );
-         
-         
-        //Step 04: close the connection resources       
-        ConnectionUtil.close(connection, stmt, null);
-         
-         
-         
+        try
+        {
+            if ( rs != null ){
+                rs.close();
+            }
+            if ( stmt != null ) {
+                stmt.close();
+            }
+            if ( conn != null ){
+                conn.close();
+            }
+        }
+        catch(SQLException e){
+             e.printStackTrace();
+						 // No need re throw the exception.
+        }
     }
 }

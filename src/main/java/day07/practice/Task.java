@@ -12,7 +12,11 @@ import java.util.Objects;
 	        this.deadline = deadline;
 	    }
 	    
-	    public String getName() {
+	    public Task(String string, int i, String string2) {
+			// TODO Auto-generated constructor stub
+		}
+
+		public String getName() {
 	        return name;
 	    }
 

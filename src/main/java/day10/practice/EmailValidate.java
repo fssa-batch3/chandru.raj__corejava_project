@@ -15,7 +15,7 @@ class InvalidEmailException extends Exception {
     }
 }
 
-class EmailValidate {
+class Email{
 	
 	public void validate(Email e)  throws InvalidEmailException {
 		 String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
@@ -27,7 +27,7 @@ class EmailValidate {
 	}
 }
 
-public class EmailCheck {
+public class EmailValidate {
 	public static void main(String[] args) {
 		
 		EmailValidate em = new EmailValidate();
