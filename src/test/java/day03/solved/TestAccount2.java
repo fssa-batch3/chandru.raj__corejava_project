@@ -16,6 +16,6 @@ public class TestAccount2 {
 		Account2 acct2 = new Account2("A102", "Arun", 1000);
 		System.out.println(acct2.getAccNo() + "-" + acct2.getName() + "-"
 				+ acct2.getBalance());
-
+    
 	}
 }
